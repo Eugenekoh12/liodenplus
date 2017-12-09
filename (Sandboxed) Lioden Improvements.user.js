@@ -164,11 +164,6 @@
 		ul li:hover ul.dropdown {  \
 			display: inline-block;  \
 		}  \
-		@media (min-width: 768px) {  \
-			.navbar-nav>li>a {  \
-				padding: 10px !important;  \
-			}  \
-		}  \
 	" );
 
 	newDropdown = function(menuItem, dropdownLinks) {
@@ -201,7 +196,7 @@
 
 	newDropdown('/hoard.php', [['/hoard.php?type=Food', 'Food'], ['/hoard.php?type=Amusement', 'Amusement'], ['/hoard.php?type=Decoration', 'Decoration'], ['/hoard.php?type=Background', 'Background'], ['/hoard.php?type=Other', 'Other'], ['/hoard.php?type=Buried', 'Buried'], ['/hoard.php?type=Bundles', 'Bundles'], ['/hoard-organisation.php', 'Organisation']]);
 
-	newDropdown('/explore.php', [['/givingtree.php', 'The Giving Tree'], ['/search.php', 'Search'], ['/trading_center.php', 'Trading Center'], ['/clans.php', 'Clans'], ['/questing.php', 'Quests'], ['/monkeybusiness.php', 'Monkey Business']	, ['/games.php', 'Games'], ['/leaders.php', 'Leaderboards'], ['/special.php', 'Raffle Lioness'], ['/personalitysnake.php', 'Personality Snake']]);
+	newDropdown('/explore.php', [['/givingtree.php', 'The Giving Tree'], ['/search.php', 'Search'], ['/trading_center.php', 'Trading Center'], ['/questing.php', 'Quests'], ['/monkeybusiness.php', 'Monkey Business']	, ['/games.php', 'Games'], ['/leaders.php', 'Leaderboards'], ['/clans.php', 'Clans'], ['/special.php', 'Raffle Lioness'], ['/personalitysnake.php', 'Personality Snake']]);
 
 	newNavbarItem('/hunting.php', 'Hunting');
 
