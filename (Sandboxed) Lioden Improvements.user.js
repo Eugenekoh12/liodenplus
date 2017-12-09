@@ -6,7 +6,7 @@ See http://wiki.greasespot.net/Metadata_Block for more info.
 // ==UserScript==
 // @name         (Sandboxed) Lioden Improvements
 // @description  Adds various improvements to the game Lioden. Sandboxed portion of the script.
-// @namespace    ahto
+// @namespace    ahto & Eugenekoh12
 // @version      9.1.2
 // @include      https://*.lioden.com/*
 // @include      https://lioden.com/*
@@ -14,6 +14,7 @@ See http://wiki.greasespot.net/Metadata_Block for more info.
 // @grant        GM_addStyle
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @resource     VisualCandyCSS https://github.com/Eugenekoh12/liodenplus/raw/master/visualcandy.css
 // ==/UserScript==
  */
 
@@ -142,7 +143,38 @@ moveToToplinks('/event.php', 'Event');
 
 moveToToplinks('/faq.php', 'FAQ');
 
-GM_addStyle("ul li ul.dropdown {\n    min-width: 225px;\n    background: " + ($('.navbar.navbar-default').css('background')) + ";\n    padding-left: 10px;\n    padding-bottom: 5px;\n\n    display: none;\n    position: absolute;\n    z-index: 999;\n    left: 0;\n}\n\nul li ul.dropdown li {\n    display: block;\n}\n\n/* Display the dropdown on hover. */\nul li:hover ul.dropdown {\n    display: block;\n}");
+GM_addStyle ( "  \
+    .navbar-nav>li>a {  \
+        padding: 10px !important;  \
+    }  \
+    ul li ul.dropdown {  \
+        min-width: 150px;  \
+        background: " + ($('.navbar.navbar-default').css('background')) + ";  \
+        padding-left: 10px;  \
+        padding-right: 10px;  \
+        padding-bottom: 5px;  \
+        display: none;  \
+        position: absolute;  \
+        z-index: 999;  \
+        left: 0;  \
+    }  \
+    ul li ul.dropdown li {  \
+        display: inline-block;  \
+        white-space: nowrap;  \
+    }  \
+    /* Display the dropdown on hover. */  \
+    ul li:hover ul.dropdown {  \
+        display: inline-block;  \
+    }  \
+    @media (min-width: 768px) {  \
+        .navbar-nav>li>a {  \
+            padding: 10px !important;  \
+        }  \
+    }  \
+" );
+
+var vcCSS = GM_getResourceText("VisualCandyCSS");
+GM_addStyle(vcCSS);
 
 newDropdown = function(menuItem, dropdownLinks) {
   var dropdown, j, len, link, linkText, ref, results;
@@ -169,18 +201,22 @@ newNavbarItem = function(page, linkText, dropdownLinks) {
 };
 
 if ((kingID = GM_getValue('kingID')) != null) {
-  newDropdown('/territory.php', [["/lion.php?mid=" + kingID, 'King Overview'], ["/lionoverview.php?id=" + kingID, 'Lion Overview'], ['/nesting.php', 'Nesting'], ['/territory_map.php', 'Territories'], ['/branch.php', 'My Branch'], ['/search_branches.php', 'Branch Sales']]);
+  newDropdown('/territory.php', [["/lion.php?mid=" + kingID, 'King Overview'], ["/lionoverview.php?id=" + kingID, 'Lion Overview'], ['/nesting.php', 'Nesting'], ['/territory_map.php', 'Territories']]);
 }
 
 newDropdown('/hoard.php', [['/hoard.php?type=Food', 'Food'], ['/hoard.php?type=Amusement', 'Amusement'], ['/hoard.php?type=Decoration', 'Decoration'], ['/hoard.php?type=Background', 'Background'], ['/hoard.php?type=Other', 'Other'], ['/hoard.php?type=Buried', 'Buried'], ['/hoard.php?type=Bundles', 'Bundles'], ['/hoard-organisation.php', 'Organisation']]);
 
-newDropdown('/explore.php', [['/givingtree.php', 'The Giving Tree'], ['/search.php', 'Search'], ['/trading_center.php', 'Trading Center'], ['/clans.php', 'Clans'], ['/questing.php', 'Quests'], ['/monkeybusiness.php', 'Monkey Business']	, ['/games.php', 'Games'], ['/patrol.php', 'Patrol'], ['/leaders.php', 'Leaderboards'], ['/special.php', 'Raffle Lioness'], ['/personalitysnake.php', 'Personality Snake']]);
+newDropdown('/explore.php', [['/givingtree.php', 'The Giving Tree'], ['/search.php', 'Search'], ['/trading_center.php', 'Trading Center'], ['/clans.php', 'Clans'], ['/questing.php', 'Quests'], ['/monkeybusiness.php', 'Monkey Business']	, ['/games.php', 'Games'], ['/leaders.php', 'Leaderboards'], ['/special.php', 'Raffle Lioness'], ['/personalitysnake.php', 'Personality Snake']]);
 
 newNavbarItem('/hunting.php', 'Hunting');
+
+newNavbarItem('/patrol.php', 'Patrol');
 
 newNavbarItem('/exploring.php', 'Exploring', [['/explorearea.php?id=1', 'Temperate Savannah (Lvl 1)'], ['/explorearea.php?id=2', 'Shrubland (Lvl 2-5)'], ['/explorearea.php?id=3', 'Tropical Forest (Lvl 6-10)'], ['/explorearea.php?id=4', 'Dry Savannah (Lvl 11-15)'], ['/explorearea.php?id=5', 'Rocky Hills (Lvl 16-20)'], ['/explorearea.php?id=6', 'Arid Desert (Lvl 21-25)'], ['/explorearea.php?id=7', 'Marshlands (Lvl 26-30)'], ['/explorearea.php?id=8', 'Waterhole (Lvl 31+)']]);
 
 newNavbarItem("/lionoverview.php?id=" + kingID, 'Cubs', [['/cubtraining.php', 'Training'], ['/gorilla-enclave.php', 'Gorilla Enclave']]);
+
+newNavbarItem('/branch.php', 'Branches', [['/branch.php', 'My Branch'], ['/search_branches.php', 'Branch Sales']]);
 
 newNavbarItem('/hoard.php', 'Beetles', [['/beetlegrounds.php', 'Beetle Grounds'], ['/battlebeetles.php', 'Battle Beetles']]);
 
