@@ -14,7 +14,6 @@ See http://wiki.greasespot.net/Metadata_Block for more info.
 // @grant        GM_addStyle
 // @grant        GM_setValue
 // @grant        GM_getValue
-// @resource     VisualCandyCSS https://github.com/Eugenekoh12/liodenplus/raw/master/visualcandy.css
 // ==/UserScript==
  */
 
@@ -172,9 +171,6 @@ GM_addStyle ( "  \
         }  \
     }  \
 " );
-
-var vcCSS = GM_getResourceText("VisualCandyCSS");
-GM_addStyle(vcCSS);
 
 newDropdown = function(menuItem, dropdownLinks) {
   var dropdown, j, len, link, linkText, ref, results;
