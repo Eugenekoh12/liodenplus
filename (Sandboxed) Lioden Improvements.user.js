@@ -147,7 +147,7 @@ GM_addStyle ( "  \
         padding: 10px !important;  \
     }  \
     ul li ul.dropdown {  \
-        min-width: 150px;  \
+        min-width: 125px;  \
         background: " + ($('.navbar.navbar-default').css('background')) + ";  \
         padding-left: 10px;  \
         padding-right: 10px;  \
